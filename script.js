@@ -1,5 +1,6 @@
 let myLibrary = [];
 
+// create the book constructor
 const book = {
   init: function(name, author, pages, read) {
     this.name = name,
@@ -9,11 +10,10 @@ const book = {
   }
 }
 
+// add the book to the array
 function addBookToLibrary(...args) {
   myLibrary.push(...args)
 }
-
-
 
 
 const content = document.getElementById('content')
@@ -25,38 +25,47 @@ const submitBook = document.getElementById('submitBook')
 let i = 0
 let readText
 submitBook.addEventListener('click', (event) => {
-  event.preventDefault()
-  const bookTitle = document.getElementById('name').value
-  const bookAuthor = document.getElementById('author').value
-  const bookPages = document.getElementById('pages').value
-  const bookRead = document.getElementById('read').checked
+  const bookTitle = document.getElementById('name')
+  const bookAuthor = document.getElementById('author')
+  const bookPages = document.getElementById('pages')
+  const bookRead = document.getElementById('read')
 
-  const newBook = Object.create(book)
-  newBook.init(bookTitle, bookAuthor, bookPages, bookRead)
-  console.log(bookRead)
+  // check Validity
+  formDiv.checkValidity()
+  formDiv.reportValidity()
 
-  addBookToLibrary(newBook)
+  if (formDiv.checkValidity()) {
+    // create a new book
+    const newBook = Object.create(book)
+    // initialize it with the details given by the user
+    newBook.init(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
 
-  add(newBook)
+    addBookToLibrary(newBook)
 
-  formDiv.style.display = 'none'
-  content.style.filter = ''
-  content.style.zIndex = ''
+    // show the book on screen
+    add(newBook)
+
+    // removing the form from the screen
+    formDiv.style.display = 'none'
+    content.style.filter = ''
+    content.style.zIndex = ''
+  }
 })
 
 addNewBook.addEventListener('click', () => {
+  // show the form and add blur for the rest of the div
   formDiv.style.display = ''
   content.style.filter = 'blur(5px)'
   content.style.zIndex = '-1'
 })
 
+// add a closing option in case the user changed his mind
 closeForm.addEventListener('click', (event) => {
   event.preventDefault()
   formDiv.style.display = 'none'
   content.style.filter = ''
   content.style.zIndex = ''
 })
-
 
 
 function add(el) {
@@ -72,36 +81,43 @@ function add(el) {
   read.setAttribute('id', 'readBtn')
   remove.setAttribute('id', 'btn')
 
+  // checking wheter the user read the book or not and style the button accordingly 
   if (el.read === false) {
     readText = 'Not read yet'
-    read.style.backgroundColor = '#FB475E'
+    read.style.backgroundColor = '#EB1D36'
   } else {
     readText = 'Read'
-    read.style.backgroundColor = '#AAD6A0'
+    read.style.backgroundColor = '#74B72E'
   }
 
+  // add the option to change it's status after adding the book
   read.addEventListener('click', (event) => {
     if (read.textContent === 'Read') {
       read.textContent = 'Not read yet'
-      read.style.backgroundColor = '#FB475E'
+      read.style.backgroundColor = '#EB1D36'
+      // also update it's status in the array
       el.read = false
     } else { 
       read.textContent = 'Read'
-      read.style.backgroundColor = '#AAD6A0'
+      read.style.backgroundColor = '#74B72E'
       el.read = true
     }
   })
 
-  console.log(myLibrary)
+  // remove the book from the library
   remove.addEventListener('click', (event) => {
+    // get the id of the parent element
     const parentId = event.target.parentElement.id
+    // get the index of the book
     const index = myLibrary.indexOf(el)
+    // delete that book from the array
     myLibrary.splice(index, 1);
     const rm = document.getElementById(parentId)
+    // delete the div from the page
     content.removeChild(rm)
-    console.log(myLibrary)
   })
 
+  // display the details of the book
   title.innerText = el.name
   author.innerText = 'Written by ' + el.author
   pages.innerText = 'Number of pages: ' + el.pages
@@ -111,5 +127,6 @@ function add(el) {
   newbook.append(title, author, pages, read, remove)
 
   content.appendChild(newbook)
-  i++; 
+  i++;
 }
+
