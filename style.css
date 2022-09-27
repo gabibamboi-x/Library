@@ -61,10 +61,11 @@ header div {
   right: 7.5px;
   border: none;
   border-radius: 100%;
-  background-color: rgba(246, 23, 23, 0.7);
   padding-inline: 6.5px;
-  padding-block: 2.5px;
+  padding-top: 2px;
+  padding-bottom: 3px;
   cursor: pointer;
+  background-color: rgba(246, 23, 23, 0.7);
 }
 
 #close:hover {
