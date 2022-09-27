@@ -15,7 +15,7 @@
   <button id="addBook">+ NEW BOOK</button>
   <form action="" id="form" style='display: none;' onsubmit="return false">
     <div id="user-input">
-      <button id="close">✕</button>
+      <div id="close">✕</div>
       <br>
       <label for="name">Title</label>
       <input type="text" id="name" name="name" required>
@@ -24,7 +24,9 @@
       <input type="text" name="author" id="author" required>
       <br>
       <label for="pages">Nr. of Pages</label>
-      <input type="text" pattern="/[0-9]{1-10}/" id="pages" name="pages" required>
+      <input type="text" pattern="\d{1,10}" 
+             title="Numbers only!" id="pages" 
+             name="pages" required>
       <br>
       <label for="read">
         Have you read this book?
@@ -35,6 +37,8 @@
     </div>
   </form>
   <div id="content"></div>
-  <footer><a href="https://github.com/gabibamboi-x">Made by gabibamboi-x</a></footer>
+  <footer>
+    <a href="https://github.com/gabibamboi-x">Developed by <img src="./Images/gitlogo.png"> gabibamboi-x</a>
+  </footer>
 </body>
 </html>
