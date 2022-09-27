@@ -60,11 +60,24 @@ addNewBook.addEventListener('click', () => {
 })
 
 // add a closing option in case the user changed his mind
-closeForm.addEventListener('click', (event) => {
-  event.preventDefault()
+function close() {
   formDiv.style.display = 'none'
   content.style.filter = ''
   content.style.zIndex = ''
+}
+
+// event listener to close when clicked
+closeForm.addEventListener('click', (event) => {
+  event.preventDefault()
+  close()
+})
+
+// keyboard close support
+window.addEventListener('keydown', (event) => {
+  const key = event.key
+  if (key === 'Escape') {
+    close()
+  }
 })
 
 
@@ -128,5 +141,7 @@ function add(el) {
 
   content.appendChild(newbook)
   i++;
-}
 
+  // reset the form for the next book
+  formDiv.reset()
+}
