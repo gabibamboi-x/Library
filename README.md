@@ -1,12 +1,12 @@
 
 # Royal Library
 
-Royal Library is a localy stored library for users to add their books and keep track of which one they read.
+Royal Library is a simple library for users to add their books and keep track of which one they read.
+
 ## Features
 
 - Add unlimited number of books
 - Live preview
-- Fullscreen mode
 - Cross platform
 - Toggle read/not read yet
 - Easy to use
@@ -14,7 +14,7 @@ Royal Library is a localy stored library for users to add their books and keep t
 
 ## Demo
 
-Coming soon...
+[Live preview, have a look 👀](https://gabibamboi-x.github.io/Library/)
 
 
 ## Tech Stack
@@ -29,12 +29,13 @@ Coming soon...
 
 ![](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 
-![Colors from Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white)
+![](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white)
 
 [Google Fonts  (Downloaded)](https://fonts.google.com)
+
 ## Lessons Learned
 
-To practice the newly learned concepts about JS Objects i created this simple library project (from TOP JS course). I now have a better understanding of Objects, how to create them and work with their contents. 
+In this project the main focus was JS Objects, how to create them and work with their contents. Creating this library allowed me to get a better understanding of Objects and how to initialize them.
 
 
 ## Authors
