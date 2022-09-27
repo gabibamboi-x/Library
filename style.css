@@ -38,6 +38,7 @@ header div {
   border-radius: 5px;
   background-color: #A67F78;
   color: aliceblue;
+  outline: none;
 }
 
 #user-input {
@@ -59,8 +60,11 @@ header div {
   top: 7.5px;
   right: 7.5px;
   border: none;
-  border-radius: 15px;
+  border-radius: 100%;
   background-color: rgba(246, 23, 23, 0.7);
+  padding-inline: 6.5px;
+  padding-block: 2.5px;
+  cursor: pointer;
 }
 
 #close:hover {
@@ -71,6 +75,7 @@ label[for='read'] {
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 input[type='text'] {
@@ -140,8 +145,14 @@ footer {
 a {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 5px;
   text-decoration: none;
-  color: black;
+  color: grey;
+}
+
+a img {
+  width: 20px;
 }
 
 button {
@@ -149,7 +160,6 @@ button {
 }
 
 @media screen and (max-width: 600px) {
-
   #content {
     display: flex;
     flex-direction: column;
@@ -163,5 +173,4 @@ button {
   #addBook {
     width: 150px;
   }
-  
 }
