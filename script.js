@@ -1,8 +1,8 @@
 let myLibrary = [];
 
 // create the book constructor
-const book = {
-  init: function(name, author, pages, read) {
+class Book {
+  constructor(name, author, pages, read) {
     this.name = name,
     this.author = author,
     this.pages = pages,
@@ -36,9 +36,7 @@ submitBook.addEventListener('click', (event) => {
 
   if (formDiv.checkValidity()) {
     // create a new book
-    const newBook = Object.create(book)
-    // initialize it with the details given by the user
-    newBook.init(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
+    const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
 
     addBookToLibrary(newBook)
 
