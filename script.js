@@ -24,31 +24,60 @@ const submitBook = document.getElementById('submitBook')
 
 let i = 0
 let readText
-submitBook.addEventListener('click', (event) => {
-  const bookTitle = document.getElementById('name')
-  const bookAuthor = document.getElementById('author')
-  const bookPages = document.getElementById('pages')
-  const bookRead = document.getElementById('read')
 
-  // check Validity
-  formDiv.checkValidity()
-  formDiv.reportValidity()
+// validate the form
+const bookTitle = document.getElementById('name')
+const bookAuthor = document.getElementById('author')
+const bookPages = document.getElementById('pages')
+const bookRead = document.getElementById('read')
 
-  if (formDiv.checkValidity()) {
-    // create a new book
-    const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
+bookTitle.addEventListener('input', () => {
+  bookTitle.setCustomValidity('');
+  bookTitle.checkValidity();
+})
 
-    addBookToLibrary(newBook)
+bookAuthor.addEventListener('input', () => {
+  bookAuthor.setCustomValidity('');
+  bookAuthor.checkValidity();
+})
 
-    // show the book on screen
-    add(newBook)
+bookPages.addEventListener('input', () => {
+  bookPages.setCustomValidity('');
+  bookPages.checkValidity();
+})
 
-    // removing the form from the screen
-    formDiv.style.display = 'none'
-    content.style.filter = ''
-    content.style.zIndex = ''
+bookTitle.addEventListener('invalid', () => {
+  if (bookTitle.value === '') {
+    bookTitle.setCustomValidity('Book title is required, darling!')
   }
 })
+
+bookAuthor.addEventListener('invalid', () => {
+  if (bookAuthor.value === '') {
+    bookAuthor.setCustomValidity('Book author is required, darling!')
+  }
+})
+
+bookPages.addEventListener('invalid', () => {
+  if (bookPages.value === '') {
+    bookPages.setCustomValidity('Book pages are required, darling!')
+  } else {
+    bookPages.setCustomValidity('You must enter a number of pages!')
+  }
+})
+
+// submit the form, prevent the default and add the book
+formDiv.onsubmit = (event) => {
+  event.preventDefault()
+
+  // create a new book
+  const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
+
+  addBookToLibrary(newBook)
+  // show the book on screen
+  add(newBook)
+  close()
+}
 
 addNewBook.addEventListener('click', () => {
   // show the form and add blur for the rest of the div
@@ -65,8 +94,7 @@ function close() {
 }
 
 // event listener to close when clicked
-closeForm.addEventListener('click', (event) => {
-  event.preventDefault()
+closeForm.addEventListener('click', () => {
   close()
 })
 
@@ -92,7 +120,7 @@ function add(el) {
   read.setAttribute('id', 'readBtn')
   remove.setAttribute('id', 'btn')
 
-  // checking wheter the user read the book or not and style the button accordingly 
+  // checking wether the user read the book or not and style the button accordingly 
   if (el.read === false) {
     readText = 'Not read yet'
     read.style.backgroundColor = '#EB1D36'
@@ -102,7 +130,7 @@ function add(el) {
   }
 
   // add the option to change it's status after adding the book
-  read.addEventListener('click', (event) => {
+  read.addEventListener('click', () => {
     if (read.textContent === 'Read') {
       read.textContent = 'Not read yet'
       read.style.backgroundColor = '#EB1D36'
