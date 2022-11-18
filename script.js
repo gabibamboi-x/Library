@@ -13,8 +13,8 @@ class Book {
 // add the book to the array
 function addBookToLibrary(...args) {
   myLibrary.push(...args)
+  updateStorage()
 }
-
 
 const content = document.getElementById('content')
 const closeForm = document.getElementById('close')
@@ -108,10 +108,12 @@ function add(el) {
       read.style.backgroundColor = '#EB1D36'
       // also update it's status in the array
       el.read = false
+      updateStorage()
     } else { 
       read.textContent = 'Read'
       read.style.backgroundColor = '#74B72E'
       el.read = true
+      updateStorage()
     }
   })
 
@@ -123,6 +125,7 @@ function add(el) {
     const index = myLibrary.indexOf(el)
     // delete that book from the array
     myLibrary.splice(index, 1);
+    updateStorage()
     const rm = document.getElementById(parentId)
     // delete the div from the page
     content.removeChild(rm)
@@ -142,4 +145,23 @@ function add(el) {
 
   // reset the form for the next book
   formDiv.reset()
+}
+
+// update the local storage with each new change
+function updateStorage() {
+  localStorage.clear()
+  localStorage.setItem('books', JSON.stringify(myLibrary))
+}
+
+// render the books when the page is loaded
+const getBooks = JSON.parse(localStorage.getItem('books'));
+
+if (getBooks) {
+  // render each book on page
+  getBooks.forEach((book) => {
+    add(book);
+  })
+
+  // push it to the library array
+  addBookToLibrary(...getBooks);
 }
