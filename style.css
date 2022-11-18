@@ -46,7 +46,7 @@ header div {
   width: 250px;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -58%);
   display: flex;
   flex-direction: column;
   background-color: #A67F78;
@@ -91,7 +91,14 @@ input[type='text'] {
 form button {
   border: none;
   height: 25px;
-  border-radius: 15px;
+  border-radius: 10px;
+  color: white;
+  background-color: black;
+}
+
+form button:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
 }
 
 #content {
